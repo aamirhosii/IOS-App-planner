@@ -1,0 +1,378 @@
+export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[]
+
+export interface Database {
+  public: {
+    Tables: {
+      plans: {
+        Row: {
+          id: string
+          title: string
+          time: string
+          location: string
+          user_id: string
+          user_name: string
+          created_at: string
+          category: string | null
+          description: string | null
+          max_participants: number | null
+          latitude: number | null
+          longitude: number | null
+          canceled_at: string | null
+          canceled_reason: string | null
+          cost: number | null
+          verify_status: boolean
+          hotness_score: number | null
+          daily_hotness_score: number | null
+          weekly_hotness_score: number | null
+          monthly_hotness_score: number | null
+          view_count: number | null
+          unique_view_count: number | null
+          last_calculated_at: string | null
+          suspicious_activity_detected: boolean | null
+        }
+        Insert: {
+          id?: string
+          title: string
+          time: string
+          location: string
+          user_id: string
+          user_name: string
+          created_at?: string
+          category?: string | null
+          description?: string | null
+          max_participants?: number | null
+          latitude?: number | null
+          longitude?: number | null
+          canceled_at?: string | null
+          canceled_reason?: string | null
+          cost?: number | null
+          verify_status?: boolean
+          hotness_score?: number | null
+          daily_hotness_score?: number | null
+          weekly_hotness_score?: number | null
+          monthly_hotness_score?: number | null
+          view_count?: number | null
+          unique_view_count?: number | null
+          last_calculated_at?: string | null
+          suspicious_activity_detected?: boolean | null
+        }
+        Update: {
+          id?: string
+          title?: string
+          time?: string
+          location?: string
+          user_id?: string
+          user_name?: string
+          created_at?: string
+          category?: string | null
+          description?: string | null
+          max_participants?: number | null
+          latitude?: number | null
+          longitude?: number | null
+          canceled_at?: string | null
+          canceled_reason?: string | null
+          cost?: number | null
+          verify_status?: boolean
+          hotness_score?: number | null
+          daily_hotness_score?: number | null
+          weekly_hotness_score?: number | null
+          monthly_hotness_score?: number | null
+          view_count?: number | null
+          unique_view_count?: number | null
+          last_calculated_at?: string | null
+          suspicious_activity_detected?: boolean | null
+        }
+      }
+      plan_analytics: {
+        Row: {
+          id: string
+          plan_id: string
+          user_id: string | null
+          visitor_ip: string | null
+          visit_type: string
+          created_at: string
+          session_id: string | null
+          is_creator_view: boolean
+          is_potential_spam: boolean
+        }
+        Insert: {
+          id?: string
+          plan_id: string
+          user_id?: string | null
+          visitor_ip?: string | null
+          visit_type: string
+          created_at?: string
+          session_id?: string | null
+          is_creator_view?: boolean
+          is_potential_spam?: boolean
+        }
+        Update: {
+          id?: string
+          plan_id?: string
+          user_id?: string | null
+          visitor_ip?: string | null
+          visit_type?: string
+          created_at?: string
+          session_id?: string | null
+          is_creator_view?: boolean
+          is_potential_spam?: boolean
+        }
+      }
+      users: {
+        Row: {
+          id: string
+          name: string
+          email: string
+          username: string | null
+          password: string
+          created_at: string
+          latitude: number | null
+          longitude: number | null
+          profile_picture: string | null
+          bio: string | null
+          location: string | null
+        }
+        Insert: {
+          id: string
+          name: string
+          email: string
+          username?: string | null
+          password: string
+          created_at?: string
+          latitude?: number | null
+          longitude?: number | null
+          profile_picture?: string | null
+          bio?: string | null
+          location?: string | null
+        }
+        Update: {
+          id?: string
+          name?: string
+          email?: string
+          username?: string | null
+          password?: string
+          created_at?: string
+          latitude?: number | null
+          longitude?: number | null
+          profile_picture?: string | null
+          bio?: string | null
+          location?: string | null
+        }
+      }
+      event_requests: {
+        Row: {
+          id: string
+          plan_id: string
+          user_id: string
+          message: string | null
+          status: string
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          plan_id: string
+          user_id: string
+          message?: string | null
+          status: string
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          plan_id?: string
+          user_id?: string
+          message?: string | null
+          status?: string
+          created_at?: string
+          updated_at?: string
+        }
+      }
+      event_participants: {
+        Row: {
+          id: string
+          plan_id: string
+          user_id: string
+          joined_at: string
+        }
+        Insert: {
+          id?: string
+          plan_id: string
+          user_id: string
+          joined_at: string
+        }
+        Update: {
+          id?: string
+          plan_id?: string
+          user_id?: string
+          joined_at?: string
+        }
+      }
+      conversations: {
+        Row: {
+          id: string
+          created_at: string
+          updated_at: string
+          title: string | null
+        }
+        Insert: {
+          id?: string
+          created_at?: string
+          updated_at?: string
+          title?: string | null
+        }
+        Update: {
+          id?: string
+          created_at?: string
+          updated_at?: string
+          title?: string | null
+        }
+      }
+      conversation_participants: {
+        Row: {
+          conversation_id: string
+          user_id: string
+          joined_at: string
+          last_read_at: string
+        }
+        Insert: {
+          conversation_id: string
+          user_id: string
+          joined_at?: string
+          last_read_at?: string
+        }
+        Update: {
+          conversation_id?: string
+          user_id?: string
+          joined_at?: string
+          last_read_at?: string
+        }
+      }
+      messages: {
+        Row: {
+          id: string
+          conversation_id: string
+          sender_id: string
+          content: string
+          created_at: string
+          is_read: boolean
+        }
+        Insert: {
+          id?: string
+          conversation_id: string
+          sender_id: string
+          content: string
+          created_at?: string
+          is_read?: boolean
+        }
+        Update: {
+          id?: string
+          conversation_id?: string
+          sender_id?: string
+          content?: string
+          created_at?: string
+          is_read?: boolean
+        }
+      }
+      notifications: {
+        Row: {
+          id: string
+          user_id: string
+          type: string
+          title: string
+          message: string | null
+          plan_id: string | null
+          is_read: boolean | null
+          created_at: string
+          data: Json | null
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          type: string
+          title: string
+          message?: string | null
+          plan_id?: string | null
+          is_read?: boolean | null
+          created_at?: string
+          data?: Json | null
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          type?: string
+          title?: string
+          message?: string | null
+          plan_id?: string | null
+          is_read?: boolean | null
+          created_at?: string
+          data?: Json | null
+        }
+      }
+      user_follows: {
+        Row: {
+          id: string
+          follower_id: string
+          following_id: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          follower_id: string
+          following_id: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          follower_id?: string
+          following_id?: string
+          created_at?: string
+        }
+      }
+    }
+    Views: {
+      plan_analytics_summary: {
+        Row: {
+          plan_id: string
+          title: string
+          creator_id: string
+          plan_created_at: string
+          legitimate_views: number
+          creator_views: number
+          suspicious_views: number
+          unique_legitimate_viewers: number
+          hotness_score: number | null
+          suspicious_activity_detected: boolean | null
+        }
+      }
+    }
+    Functions: {
+      find_conversation_between_users: {
+        Args: {
+          user_id_1: string
+          user_id_2: string
+        }
+        Returns: string
+      }
+      get_user_conversations: {
+        Args: {
+          user_id_param: string
+        }
+        Returns: Json
+      }
+      is_user_in_conversation: {
+        Args: {
+          user_id_param: string
+          conversation_id_param: string
+        }
+        Returns: boolean
+      }
+    }
+    Enums: {
+      [_ in never]: never
+    }
+    CompositeTypes: {
+      [_ in never]: never
+    }
+  }
+}
